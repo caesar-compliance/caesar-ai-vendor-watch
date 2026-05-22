@@ -1,7 +1,7 @@
-/** Central branding, ownership, and URLs for Caesar Vendor Watch */
+/** Central branding, ownership, and URLs for Caesar AI Vendor Watch */
 
-export const APP_SLUG = 'caesar-vendor-watch';
-export const APP_NAME = 'Caesar Vendor Watch';
+export const APP_SLUG = 'caesar-ai-vendor-watch';
+export const APP_NAME = 'Caesar AI Vendor Watch';
 export const APP_TAGLINE =
   'Tracking changes to Terms of Service across major platforms.';
 export const APP_DESCRIPTION =
@@ -9,7 +9,7 @@ export const APP_DESCRIPTION =
 
 export const GITHUB_ORG = 'caesar-compliance';
 export const GITHUB_USER = 'artemhobotun';
-export const GITHUB_REPO = 'caesar-vendor-watch';
+export const GITHUB_REPO = 'caesar-ai-vendor-watch';
 export const GITHUB_REPO_URL = `https://github.com/${GITHUB_ORG}/${GITHUB_REPO}`;
 
 export const AUTHOR_NAME = 'Artem Hobotun';

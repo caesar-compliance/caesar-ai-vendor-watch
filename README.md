@@ -1,4 +1,4 @@
-# Caesar Vendor Watch
+# Caesar AI Vendor Watch
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)](https://nextjs.org/)
@@ -47,8 +47,8 @@ Public archives from [Open Terms Archive](https://opentermsarchive.org/):
 ## Quick start (local)
 
 ```bash
-git clone https://github.com/caesar-compliance/caesar-vendor-watch.git
-cd caesar-vendor-watch
+git clone https://github.com/caesar-compliance/caesar-ai-vendor-watch.git
+cd caesar-ai-vendor-watch
 npm install
 cp .env.example .env
 # Fill DATABASE_URL, GITHUB_TOKEN, LLM_API_KEY, CRON_SECRET
@@ -85,10 +85,10 @@ See [`.env.example`](.env.example).
 
 ## Deploy on Vercel
 
-1. Push this repo to `caesar-compliance/caesar-vendor-watch` on GitHub.
+1. Push this repo to `caesar-compliance/caesar-ai-vendor-watch` on GitHub.
 2. [vercel.com](https://vercel.com) → **Add New Project** → import the repo.
 3. **Environment Variables** — copy all from `.env.example` (use Supabase pooler `DATABASE_URL`).
-4. Set `NEXT_PUBLIC_APP_URL` to your Vercel URL (e.g. `https://caesar-vendor-watch.vercel.app`).
+4. Set `NEXT_PUBLIC_APP_URL` to your Vercel URL (e.g. `https://caesar-ai-vendor-watch.vercel.app`).
 5. Deploy. Cron runs automatically (see `vercel.json`).
 
 **Supabase note:** on **Vercel**, use the **Transaction pooler** URI (port **6543**, `?pgbouncer=true`). For local dev, session pooler (port **5432**) is fine. Direct `db.*.supabase.co` often fails from Vercel/home networks.

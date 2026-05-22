@@ -1,14 +1,14 @@
 {
-  "name": "caesar-vendor-watch",
+  "name": "caesar-ai-vendor-watch",
   "version": "0.1.0",
   "private": true,
   "author": "Artem Hobotun <nazzarkoartem@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/caesar-compliance/caesar-vendor-watch.git"
+    "url": "https://github.com/caesar-compliance/caesar-ai-vendor-watch.git"
   },
   "bugs": {
-    "url": "https://github.com/caesar-compliance/caesar-vendor-watch/issues"
+    "url": "https://github.com/caesar-compliance/caesar-ai-vendor-watch/issues"
   },
   "homepage": "https://vendor-watch.caesar.no",
   "scripts": {
