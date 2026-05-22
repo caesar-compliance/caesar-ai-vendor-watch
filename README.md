@@ -4,8 +4,11 @@
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)](https://nextjs.org/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Supabase-336791?logo=postgresql&logoColor=white)](https://supabase.com/)
 [![Deployed on Vercel](https://img.shields.io/badge/Deploy-Vercel-black?logo=vercel)](https://vercel.com/)
+[![Live](https://img.shields.io/badge/Live-vendor--watch.caesar.no-2563eb)](https://vendor-watch.caesar.no/)
 
 Track changes to **Terms of Service**, **Privacy Policies**, and related vendor legal documents across major platforms. AI-powered summaries, filters, RSS, and a clean reading experience.
+
+**Live:** [https://vendor-watch.caesar.no](https://vendor-watch.caesar.no)
 
 Maintained by **[Caesar Compliance](https://github.com/caesar-compliance)** · [@artemhobotun](https://github.com/artemhobotun)
 
@@ -88,7 +91,9 @@ See [`.env.example`](.env.example).
 4. Set `NEXT_PUBLIC_APP_URL` to your Vercel URL (e.g. `https://caesar-vendor-watch.vercel.app`).
 5. Deploy. Cron runs automatically (see `vercel.json`).
 
-**Supabase note:** use the **Session pooler** connection string; direct `db.*.supabase.co` often fails from Vercel/home networks.
+**Supabase note:** on **Vercel**, use the **Transaction pooler** URI (port **6543**, `?pgbouncer=true`). For local dev, session pooler (port **5432**) is fine. Direct `db.*.supabase.co` often fails from Vercel/home networks.
+
+Set `NEXT_PUBLIC_APP_URL=https://vendor-watch.caesar.no` in Vercel env vars.
 
 **Custom domain:** Vercel → Project → Domains → add your domain → update `NEXT_PUBLIC_APP_URL`.
 

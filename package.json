@@ -10,7 +10,7 @@
   "bugs": {
     "url": "https://github.com/caesar-compliance/caesar-vendor-watch/issues"
   },
-  "homepage": "https://github.com/caesar-compliance/caesar-vendor-watch#readme",
+  "homepage": "https://vendor-watch.caesar.no",
   "scripts": {
     "dev": "next dev",
     "build": "prisma generate && next build",
