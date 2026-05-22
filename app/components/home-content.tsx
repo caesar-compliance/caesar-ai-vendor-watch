@@ -3,6 +3,7 @@ import { EmailSubscription } from '@/app/components/email-subscription';
 import { ClientLayout } from '@/app/components/client-layout';
 import { NotFoundBanner } from '@/app/components/not-found-banner';
 import { Bot } from 'lucide-react';
+import { APP_NAME, APP_TAGLINE } from '@/lib/app-config';
 
 interface Change {
   id: string;
@@ -33,10 +34,10 @@ export function HomeContent({ changes, filterOptions, scrollToCommitId, notFound
         <header className="border-b border-gray-200">
           <div className="max-w-6xl mx-auto px-4 py-8">
             <h1 className="font-serif text-4xl font-bold text-gray-900 mb-2">
-              Terms Watch
+              {APP_NAME}
             </h1>
             <p className="text-gray-600 mb-4 leading-relaxed">
-              Tracking changes to Terms of Service across major platforms.
+              {APP_TAGLINE}
               Data sourced from{' '}
               <a
                 href="https://opentermsarchive.org/"

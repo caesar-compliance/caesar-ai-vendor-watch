@@ -11,16 +11,18 @@ export function EmailSubscription() {
           <p className="text-sm text-gray-600">Get a daily digest of terms changes delivered to your inbox (excluding minor updates)</p>
         </div>
         <div className="flex gap-3">
-          <a
-            href="https://follow.it/terms-watch?leanpub"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-full font-medium text-sm hover:bg-gray-700 transition-colors"
-            aria-label="Subscribe to daily email updates"
-          >
-            <Mail size={20} />
-            <span>Get Daily Updates</span>
-          </a>
+          {process.env.NEXT_PUBLIC_EMAIL_SUBSCRIBE_URL ? (
+            <a
+              href={process.env.NEXT_PUBLIC_EMAIL_SUBSCRIBE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-gray-900 text-white rounded-full font-medium text-sm hover:bg-gray-700 transition-colors"
+              aria-label="Subscribe to daily email updates"
+            >
+              <Mail size={20} />
+              <span>Get Daily Updates</span>
+            </a>
+          ) : null}
           <a 
             href="/rss" 
             target="_blank"

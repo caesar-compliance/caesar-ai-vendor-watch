@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { Github } from 'lucide-react';
 import { useScrollContext } from '@/app/contexts/scroll-context';
+import { APP_NAME, AUTHOR_EMAIL, getGithubRepoUrl } from '@/lib/app-config';
 
 export function SmartFooter() {
   const [isVisible, setIsVisible] = useState(false);
@@ -65,25 +66,23 @@ export function SmartFooter() {
       <div className="max-w-6xl mx-auto px-4 py-3">
         <div className="flex items-center justify-between text-sm text-gray-500">
           <p>
-            Made by{' '}
+            {APP_NAME} ·{' '}
             <a
-              href="https://shlomi.hod.xyz"
-              target="_blank"
-              rel="noopener noreferrer"
+              href={`mailto:${AUTHOR_EMAIL}`}
               className="underline hover:text-gray-700"
             >
-              Shlomi Hod
+              {AUTHOR_EMAIL}
             </a>
           </p>
           <a
-            href="https://github.com/shlomihod/terms-watch"
+            href={getGithubRepoUrl()}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1 hover:text-gray-700 transition-colors"
             aria-label="View on GitHub"
           >
             <Github size={16} />
-            <span>Open Source on GitHub</span>
+            <span>caesar-compliance</span>
           </a>
         </div>
       </div>

@@ -1,114 +1,131 @@
-# Terms Watch
+# Caesar Vendor Watch
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)](https://nextjs.org/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Supabase-336791?logo=postgresql&logoColor=white)](https://supabase.com/)
+[![Deployed on Vercel](https://img.shields.io/badge/Deploy-Vercel-black?logo=vercel)](https://vercel.com/)
 
-🔗 **Live at: [https://termswatch.io](https://termswatch.io)**
+Track changes to **Terms of Service**, **Privacy Policies**, and related vendor legal documents across major platforms. AI-powered summaries, filters, RSS, and a clean reading experience.
 
-A web application that tracks and monitors changes to Terms of Service and Privacy Policies across major platforms, powered by data from [Open Terms Archive](https://opentermsarchive.org/).
+Maintained by **[Caesar Compliance](https://github.com/caesar-compliance)** · [@artemhobotun](https://github.com/artemhobotun)
 
-## Overview
+---
 
-Terms Watch provides an easy-to-read interface for monitoring legal document changes from major tech platforms. It uses AI to summarize changes and helps users understand what's actually changing in the terms they agree to.
+## Why this stack?
 
-### Features
+| Platform | Fit for this app |
+|----------|------------------|
+| **Vercel** | Best — Next.js, API routes, cron (`vercel.json`), env vars |
+| **Cloudflare Pages** | Possible, but cron/long API need extra Workers setup |
+| **GitHub Pages** | Not suitable — static only, no server/API/database |
 
-- 📊 Real-time tracking of Terms of Service and Privacy Policy changes
-- 🤖 AI-powered summaries of document changes
-- 🔍 Filter changes by category (Social Media, AI Platforms)
-- 📅 Timeline view of recent changes
-- 📰 RSS feed for subscribing to updates
-- 🎨 Clean, responsive interface
+Use **GitHub for the repo**, **Vercel for the live site**.
 
-## Data Sources
+---
 
-Terms Watch monitors two collections from Open Terms Archive:
-- [Platform Governance Archive](https://opentermsarchive.org/en/collections/pga/) - Major social media and platform services
-- [Generative AI Governance Archive](https://opentermsarchive.org/en/collections/genai-eu/) - AI services and platforms
+## Features
 
-## Setup
+- Timeline of ToS / policy changes (social + AI vendors)
+- AI summaries via OpenRouter (minor changes filtered)
+- Filters by service, document type, category
+- Per-change share links and diff view
+- RSS feed at `/rss`
+- Automated sync twice daily (Vercel Cron)
 
-### Prerequisites
+## Data sources
 
-- Node.js 18+
-- PostgreSQL database
-- GitHub Personal Access Token (for API rate limits)
-- OpenRouter API key (or compatible LLM API)
+Public archives from [Open Terms Archive](https://opentermsarchive.org/):
 
-### Installation
+- [Platform Governance Archive](https://opentermsarchive.org/en/collections/pga/) → `OpenTermsArchive/pga-versions`
+- [Generative AI Governance Archive](https://opentermsarchive.org/en/collections/genai-eu/) → `OpenTermsArchive/genai-eu-versions`
 
-1. Clone the repository:
+---
+
+## Quick start (local)
+
 ```bash
-git clone https://github.com/shlomihod/terms-watch.git
-cd terms-watch
-```
-
-2. Install dependencies:
-```bash
+git clone https://github.com/caesar-compliance/caesar-vendor-watch.git
+cd caesar-vendor-watch
 npm install
-```
-
-3. Copy the environment example file:
-```bash
 cp .env.example .env
-```
-
-4. Configure your `.env` file with:
-   - Database credentials (PostgreSQL)
-   - GitHub token (for higher API rate limits)
-   - LLM API key (OpenRouter or compatible)
-   - CRON_SECRET (random string for security)
-   - NEXT_PUBLIC_APP_URL (your deployment URL)
-
-5. Set up the database:
-```bash
-npx prisma migrate dev
-npx prisma generate
-```
-
-6. Run the development server:
-```bash
+# Fill DATABASE_URL, GITHUB_TOKEN, LLM_API_KEY, CRON_SECRET
+npx prisma migrate deploy
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view the application.
+Open [http://localhost:3000](http://localhost:3000).
 
-## Deployment
+**Load data:**
 
-The app is configured for deployment on Vercel:
+```bash
+npm run reset:db
+curl -H "Authorization: Bearer $CRON_SECRET" http://localhost:3000/api/cron
+```
 
-1. Push to GitHub
-2. Import project in Vercel
-3. Add environment variables
-4. Deploy
+---
 
-The cron job runs automatically twice daily (configured in `vercel.json`).
+## Environment variables
+
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `DATABASE_URL` | Yes | Supabase **Session pooler** URI (port 5432) |
+| `GITHUB_TOKEN` | Yes | GitHub PAT (public repo read) |
+| `LLM_API_KEY` | Yes | OpenRouter API key |
+| `CRON_SECRET` | Yes | Random string; protects `/api/cron` |
+| `NEXT_PUBLIC_APP_URL` | Yes | Production URL (e.g. `https://your-app.vercel.app`) |
+| `NEXT_PUBLIC_GITHUB_REPO_URL` | No | Footer link to this repo |
+| `NEXT_PUBLIC_EMAIL_SUBSCRIBE_URL` | No | External newsletter URL |
+
+See [`.env.example`](.env.example).
+
+---
+
+## Deploy on Vercel
+
+1. Push this repo to `caesar-compliance/caesar-vendor-watch` on GitHub.
+2. [vercel.com](https://vercel.com) → **Add New Project** → import the repo.
+3. **Environment Variables** — copy all from `.env.example` (use Supabase pooler `DATABASE_URL`).
+4. Set `NEXT_PUBLIC_APP_URL` to your Vercel URL (e.g. `https://caesar-vendor-watch.vercel.app`).
+5. Deploy. Cron runs automatically (see `vercel.json`).
+
+**Supabase note:** use the **Session pooler** connection string; direct `db.*.supabase.co` often fails from Vercel/home networks.
+
+**Custom domain:** Vercel → Project → Domains → add your domain → update `NEXT_PUBLIC_APP_URL`.
+
+---
 
 ## Scripts
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run start` - Start production server
-- `npm run clean:db` - Clean database (development)
-- `npm run reset:db` - Reset database and set check dates
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Development server |
+| `npm run build` | Production build |
+| `npm run start` | Run production build locally |
+| `npm run reset:db` | Clear changes; set sync from 2025-01-01 |
+| `npm run clean:db` | Delete all changes |
 
-## Tech Stack
+---
 
-- **Framework**: Next.js
-- **Database**: PostgreSQL with Prisma ORM
-- **Styling**: Tailwind CSS
-- **AI**: OpenRouter API (configurable)
-- **Data Source**: GitHub API (Open Terms Archive repos)
-- **Deployment**: Vercel
+## Tech stack
 
-## Contributing
+- **Framework:** Next.js 16 (App Router)
+- **Database:** PostgreSQL + Prisma
+- **Styling:** Tailwind CSS
+- **AI:** OpenRouter (OpenAI-compatible)
+- **Deploy:** Vercel
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+---
+
+## Maintainer
+
+- **Organization:** [caesar-compliance](https://github.com/caesar-compliance)
+- **GitHub:** [@artemhobotun](https://github.com/artemhobotun)
+- **Email:** nazzarkoartem@gmail.com
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+MIT — see [LICENSE](LICENSE). Copyright (c) Caesar Compliance — Artem Hobotun.
 
 ## Acknowledgments
 
-- [Open Terms Archive](https://opentermsarchive.org/) for providing the data
-- All contributors and maintainers of the tracked repositories
+- [Open Terms Archive](https://opentermsarchive.org/) for source data

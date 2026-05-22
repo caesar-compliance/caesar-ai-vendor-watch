@@ -1,13 +1,6 @@
-/**
- * URL utility functions for the Terms Watch application
- */
+import { getAppBaseUrl } from '@/lib/app-config';
 
-/**
- * Get the base URL for the application
- */
-export function getAppBaseUrl(): string {
-  return process.env.NEXT_PUBLIC_APP_URL || 'https://termswatch.io';
-}
+export { getAppBaseUrl };
 
 /**
  * Generate a shareable link for a specific change

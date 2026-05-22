@@ -1,7 +1,16 @@
 {
-  "name": "terms-watch",
+  "name": "caesar-vendor-watch",
   "version": "0.1.0",
   "private": true,
+  "author": "Artem Hobotun <nazzarkoartem@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/caesar-compliance/caesar-vendor-watch.git"
+  },
+  "bugs": {
+    "url": "https://github.com/caesar-compliance/caesar-vendor-watch/issues"
+  },
+  "homepage": "https://github.com/caesar-compliance/caesar-vendor-watch#readme",
   "scripts": {
     "dev": "next dev",
     "build": "prisma generate && next build",

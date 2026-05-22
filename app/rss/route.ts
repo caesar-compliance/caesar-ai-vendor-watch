@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { Feed } from 'feed';
 import escapeHtml from 'escape-html';
 import { prisma } from '@/lib/db';
+import { APP_DESCRIPTION, APP_NAME, AUTHOR_EMAIL, AUTHOR_NAME, getAppBaseUrl, getGithubRepoUrl } from '@/lib/app-config';
 import { RSS_FEED_SIZE } from '@/lib/constants';
 
 export async function GET() {
@@ -16,19 +17,19 @@ export async function GET() {
       },
     });
 
-    const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://terms-watch.vercel.app';
+    const siteUrl = getAppBaseUrl();
     const feedUrl = `${siteUrl}/rss`;
 
     // Create feed instance with site metadata
     const feed = new Feed({
-      title: 'Terms Watch',
-      description: 'Track changes to Terms of Service across major platforms',
+      title: APP_NAME,
+      description: APP_DESCRIPTION,
       id: siteUrl,
       link: siteUrl,
       language: 'en',
       image: `${siteUrl}/favicon.ico`,
       favicon: `${siteUrl}/favicon.ico`,
-      copyright: `All rights reserved ${new Date().getFullYear()}, Terms Watch`,
+      copyright: `Copyright ${new Date().getFullYear()} Caesar Compliance (${AUTHOR_EMAIL})`,
       updated: changes.length > 0 ? changes[0].commitDate : new Date(),
       generator: 'Feed for Node.js',
       feedLinks: {
@@ -37,8 +38,9 @@ export async function GET() {
         atom: `${siteUrl}/api/atom`, // Future atom feed if needed
       },
       author: {
-        name: 'Terms Watch',
-        link: siteUrl,
+        name: AUTHOR_NAME,
+        email: AUTHOR_EMAIL,
+        link: getGithubRepoUrl(),
       },
     });
 

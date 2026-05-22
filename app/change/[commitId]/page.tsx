@@ -6,6 +6,7 @@ import {
   getChangesIncludingCommit,
 } from '@/lib/data';
 import { HomeContent } from '@/app/components/home-content';
+import { APP_NAME, getPageTitle } from '@/lib/app-config';
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
@@ -22,11 +23,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!change) {
     return {
-      title: 'Change Not Found — Terms Watch',
+      title: getPageTitle('Change Not Found'),
     };
   }
 
-  const title = `${change.service} updated their ${change.documentType} — Terms Watch`;
+  const title = `${change.service} updated their ${change.documentType} — ${APP_NAME}`;
   const description = change.diffSummary || `${change.service} updated their ${change.documentType}`;
 
   return {
