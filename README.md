@@ -75,7 +75,7 @@ curl -H "Authorization: Bearer $CRON_SECRET" http://localhost:3000/api/cron
 | `GITHUB_TOKEN` | Yes | GitHub PAT (public repo read) |
 | `LLM_API_KEY` | Yes | OpenRouter API key |
 | `CRON_SECRET` | Yes | Random string; protects `/api/cron` |
-| `NEXT_PUBLIC_APP_URL` | Yes | Production URL (e.g. `https://your-app.vercel.app`) |
+| `NEXT_PUBLIC_APP_URL` | Yes | Canonical public URL (`https://vendor-watch.caesar.no`) |
 | `NEXT_PUBLIC_GITHUB_REPO_URL` | No | Footer link to this repo |
 | `NEXT_PUBLIC_EMAIL_SUBSCRIBE_URL` | No | External newsletter URL |
 
@@ -88,7 +88,7 @@ See [`.env.example`](.env.example).
 1. Push this repo to `caesar-compliance/caesar-ai-vendor-watch` on GitHub.
 2. [vercel.com](https://vercel.com) → **Add New Project** → import the repo.
 3. **Environment Variables** — copy all from `.env.example` (use Supabase pooler `DATABASE_URL`).
-4. Set `NEXT_PUBLIC_APP_URL` to your Vercel URL (e.g. `https://caesar-ai-vendor-watch.vercel.app`).
+4. Set `NEXT_PUBLIC_APP_URL=https://vendor-watch.caesar.no`.
 5. Deploy. Cron runs automatically (see `vercel.json`).
 
 **Supabase note:** on **Vercel**, use the **Transaction pooler** URI (port **6543**, `?pgbouncer=true`). For local dev, session pooler (port **5432**) is fine. Direct `db.*.supabase.co` often fails from Vercel/home networks.
@@ -96,6 +96,10 @@ See [`.env.example`](.env.example).
 Set `NEXT_PUBLIC_APP_URL=https://vendor-watch.caesar.no` in Vercel env vars.
 
 **Custom domain:** Vercel → Project → Domains → add your domain → update `NEXT_PUBLIC_APP_URL`.
+
+## Deployment cadence
+
+Development is local-first. Do not deploy production for every small task. Use feature branches for iteration and merge/deploy in approved release batches.
 
 ---
 

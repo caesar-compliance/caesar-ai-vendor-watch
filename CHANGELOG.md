@@ -3,7 +3,12 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
-- No unreleased entries yet.
+### Added
+- Added deployment cadence policy in `docs/DEPLOYMENT_POLICY.md` (local-first; no automatic production deploy for every small task).
+
+### Changed
+- Aligned canonical public URL references to `https://vendor-watch.caesar.no` in project governance/docs.
+- Updated GitHub repository homepage metadata to `https://vendor-watch.caesar.no`.
 
 ## [0.1.0] - 23 May 2026
 ### Added

@@ -9,3 +9,4 @@
 - Validation status: pending at record creation, finalized in T001 report
 - Database migration status: no migration created, no migration applied
 - Notes: Governance/accounting baseline established before feature work.
+  - T001A follow-up policy: canonical public URL is `https://vendor-watch.caesar.no`; technical Vercel deployment URLs are non-canonical.

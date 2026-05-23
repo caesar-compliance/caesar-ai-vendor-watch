@@ -3,7 +3,7 @@
 - Date: 23 May 2026
 - Product: Caesar AI Vendor Watch
 - Baseline: v0.1.0 - Initial controlled runtime baseline
-- Current Task: T001 - Freeze v0.1.0 Runtime Baseline and Establish Development Accounting
+- Current Task: T001A - Production URL Alignment and Deployment Cadence Policy
 
 ## Purpose
 Track, compare, summarize, and publish policy/legal document changes (ToS, privacy, acceptable use, service terms, subprocessors) for AI and platform vendors.
@@ -21,8 +21,9 @@ Track, compare, summarize, and publish policy/legal document changes (ToS, priva
 - `OpenTermsArchive/genai-eu-versions`
 
 ## Deployment Status
-- Known production URL: `https://vendor-watch.caesar.no`
-- Current deployment state in this task: unknown (no deployment executed in T001)
+- Canonical public production URL: `https://vendor-watch.caesar.no`
+- Technical Vercel deployment URLs may exist, but they are not canonical public links.
+- Current deployment state in this task: no deployment executed in T001/T001A
 
 ## Runtime/DB Status
 - Prisma models: `Change`, `LastCheck`
@@ -34,6 +35,7 @@ Track, compare, summarize, and publish policy/legal document changes (ToS, priva
 - No secrets are to be printed or committed.
 - No destructive production DB operations.
 - Cron/security behavior changes must be explicitly documented.
+- Local-first development by default; do not merge/deploy every small task.
 
 ## Current Product Status
 - Live runtime product with ingestion, summaries, filterable UI, RSS, and cron flow.

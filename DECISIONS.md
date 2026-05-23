@@ -23,3 +23,15 @@
 - Version impact: v0.1.0+
 - Decision: Broad local agent permissions are allowed, but secret leakage and destructive production actions remain blocked.
 - Why: Maintain development velocity without compromising safety boundaries.
+
+## 23 May 2026 - D005
+- Task: T001A
+- Version impact: v0.1.0 (governance update)
+- Decision: Canonical public URL is `https://vendor-watch.caesar.no`.
+- Why: Keep product metadata, docs, and public references consistent.
+
+## 23 May 2026 - D006
+- Task: T001A
+- Version impact: v0.1.0 (process update)
+- Decision: Development is local-first; production deployment is performed only in approved release batches or explicit deploy tasks.
+- Why: Avoid unnecessary Vercel production deploys on every small change.
