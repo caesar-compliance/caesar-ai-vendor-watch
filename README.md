@@ -1,7 +1,5 @@
 # Caesar AI Vendor Watch
 
-This public repository is a pointer to the live product.
+**Live site:** [https://vendor-watch.caesar.no/](https://vendor-watch.caesar.no/)
 
-**Website:** [https://vendor-watch.caesar.no/](https://vendor-watch.caesar.no/)
-
-The application source code and deployment configuration are maintained in a private development repository under the maintainer account.
+Public pointer repository for the product. Application source and deployment are maintained in the private development repository `artemhobotun/caesar-ai-vendor-watch-dev`.
